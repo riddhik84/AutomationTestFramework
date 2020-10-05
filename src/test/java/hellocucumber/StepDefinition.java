@@ -6,7 +6,7 @@ import io.cucumber.java.en.When;
 
 import static org.junit.Assert.assertEquals;
 
-public class Stepdefs {
+public class StepDefinition {
     private String today;
     private String actualAnswer;
 
@@ -41,10 +41,12 @@ public class Stepdefs {
     }
 
 
-}
-
-class IsItFriday {
-    static String isItFriday(String today) {
-        return "Friday".equals(today) ? "TGIF" : "Nope";
+    @Given("today is {string}")
+    public void today_is(String today) {
+        this.today = today;
+    }
+    @Then("I should be told that {string}")
+    public void i_should_be_told_that(String expectedAnswer) {
+        assertEquals(expectedAnswer, actualAnswer);
     }
 }
